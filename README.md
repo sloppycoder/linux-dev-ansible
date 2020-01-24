@@ -7,6 +7,10 @@ Install the following items for my usualy development work
 - golang compiler
 - google cloud sdk
 - kubernetes related command line tools, kubectl, skaffold, kustomize
+- aws sdk v2 (alpha)
+- sdkman, openjdk, maven
+- sublime text
+- nvm and nodejs runtime
 
 Tested on Debian/Buster and Ubuntu 18.04 LTS
 
