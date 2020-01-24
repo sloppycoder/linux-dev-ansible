@@ -6,9 +6,7 @@ Install the following items for my usualy development work
 - zsh, oh-my-zsh and custom plugin
 - golang compiler
 - google cloud sdk
-- kubernetes related command line tools, kubectl, skaffold, kustomize, krew
-- sdkman/jdk/maven (not yet implemented)
-- awscli v2 alpha (not yet implemented)
+- kubernetes related command line tools, kubectl, skaffold, kustomize
 
 Tested on Debian/Buster and Ubuntu 18.04 LTS
 
@@ -25,3 +23,15 @@ vagrant up
 ```
 ./run
 ```
+
+## TODO
+
+Add tasks for the following
+
+- krew
+- sdkman/jdk/maven
+- awscli v2 alpha
+- flutter
+- jetbrains toolbox
+- chromeos android studio
+- nvm
