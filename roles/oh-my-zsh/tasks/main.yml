@@ -1,0 +1,46 @@
+## playbook here is copied from https://github.com/veggiemonk/ansible-ohmyzsh
+---
+- name: Install required packages
+  apt:
+    update_cache: yes
+    pkg:
+      - git
+      - peco
+      - zsh
+  become: yes
+
+- name: Clone oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+    update: no
+    depth: 1
+
+- name: Clone oh-my-zsh custom plugins for fish shell like behavior
+  git:
+    repo: "{{ item.repo }}"
+    dest: "~/.oh-my-zsh/custom/plugins/{{ item.dest }}"
+    update: no
+    depth: 1
+  loop:
+    - {
+        repo: "https://github.com/zsh-users/zsh-autosuggestions",
+        dest: "zsh-autosuggestions",
+      }
+    - {
+        repo: "https://github.com/jimeh/zsh-peco-history.git",
+        dest: "zsh-peco-history",
+      }
+
+- name: Creating new zshrc
+  template:
+    src: zshrc.j2
+    dest: ~/.zshrc
+    mode: 0644
+    force: no
+
+- name: change user shell to zsh
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+  become: yes
