@@ -6,7 +6,7 @@ Install the following items for my usualy development work
 - zsh, oh-my-zsh and custom plugin
 - golang compiler
 - google cloud sdk
-- python
+- kubernetes related command line tools, kubectl, skaffold, kustomize, krew
 - sdkman/jdk/maven (not yet implemented)
 - awscli v2 alpha (not yet implemented)
 

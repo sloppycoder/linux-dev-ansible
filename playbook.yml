@@ -3,6 +3,7 @@
     - common
     - oh-my-zsh
     - golang
+    - kube-tools
     - vscode
     - sublime-text
     - gcloud-sdk
