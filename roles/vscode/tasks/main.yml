@@ -1,0 +1,25 @@
+- name: Install required packages
+  apt:
+    update_cache: yes
+    pkg:
+      - libasound2
+  become: yes
+
+- name: Import signing key into apt
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+  become: yes
+
+- name: Add APT repository
+  apt_repository:
+    repo: deb https://packages.microsoft.com/repos/vscode stable main
+    state: present
+  become: yes
+
+- name: Install VSCode from APT repository
+  apt:
+    update_cache: yes
+    pkg:
+      - code
+  become: yes
