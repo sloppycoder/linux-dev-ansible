@@ -1,12 +1,15 @@
+#
+# some roles are commented out by default. uncomment them to install
+#
 - hosts: all
   roles:
     - common
     - oh-my-zsh
-    - golang
     - kube-tools
-    # - awscli-v2
-    - nvm
-    - sdkman
-    - vscode
     - sublime-text
-    - gcloud-sdk
+    # - golang
+    # - gcloud-sdk
+    # - awscli-v2
+    # - nvm
+    # - sdkman
+    # - vscode
