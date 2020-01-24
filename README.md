@@ -28,7 +28,6 @@ vagrant up
 
 Add tasks for the following
 
-- sdkman/jdk/maven
+- python pipenv
 - awscli v2 alpha
 - flutter
-- jetbrains toolbox

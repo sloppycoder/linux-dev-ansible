@@ -4,6 +4,8 @@
     - oh-my-zsh
     - golang
     - kube-tools
+    - nvm
+    - sdkman
     - vscode
     - sublime-text
     - gcloud-sdk
