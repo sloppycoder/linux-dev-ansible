@@ -4,7 +4,7 @@
 $system_setup = <<END_OF_SETUP
 
 apt-get update 
-apt-get install -y ansible
+apt-get install -y ansible git
 
 END_OF_SETUP
 
