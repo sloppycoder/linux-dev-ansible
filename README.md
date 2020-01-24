@@ -28,6 +28,4 @@ vagrant up
 
 Add tasks for the following
 
-- python pipenv
-- awscli v2 alpha
 - flutter
