@@ -1,0 +1,4 @@
+*.retry
+logs/
+.vagrant/
+vagrant-ssh-config

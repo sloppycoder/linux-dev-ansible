@@ -1,0 +1,7 @@
+[all]
+default
+
+[all:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_common_args='-F vagrant-ssh-config'
+
