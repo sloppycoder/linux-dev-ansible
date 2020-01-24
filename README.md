@@ -2,7 +2,7 @@
 
 Install the following items for my usualy development work
 
-- install common packages including build-essentials, git, git-gui, etc
+- install common packages including jq, git, git-gui, etc
 - zsh, oh-my-zsh and custom plugin
 - golang compiler
 - google cloud sdk
