@@ -2,13 +2,16 @@
   apt:
     update_cache: yes
     pkg:
+      - build-essential
       - curl
       - jq
       - git
       - git-gui
       - telnet
       - tmux
+      - unzip
       - wget
+      - zip
   become: yes
 
 - name: Creating new .gitconfig
