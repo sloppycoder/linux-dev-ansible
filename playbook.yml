@@ -4,6 +4,7 @@
     - oh-my-zsh
     - golang
     - kube-tools
+    # - awscli-v2
     - nvm
     - sdkman
     - vscode

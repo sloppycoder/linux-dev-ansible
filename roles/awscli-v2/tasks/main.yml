@@ -1,0 +1,15 @@
+- name: Download AWS CLI v2
+  unarchive:
+    src: https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip
+    remote_src: yes
+    dest: /tmp
+    creates: /tmp/aws/install
+
+- name: Install AWS CLI v2
+  shell:
+    cmd: |
+      set -e
+      /tmp/aws/install
+      # rm -rf /tmp/aws
+    creates: /usr/local/bin/aws2
+  become: yes
