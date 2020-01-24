@@ -1,0 +1,20 @@
+- name: Install nvm
+  shell:
+    cmd: |
+      set -e
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
+    creates: ~/.nvm/nvm.sh
+
+- name: Add nvm init .zshrc
+  blockinfile:
+    path: ~/.zshrc
+    insertafter: EOF
+    marker: "# nvm {mark} "
+    block: |
+      export NVM_DIR=$HOME/.nvm
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+- name: Install nodejs runtime
+  shell:
+    cmd: /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
+    creates: ~/.nvm/alias

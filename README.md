@@ -32,4 +32,3 @@ Add tasks for the following
 - awscli v2 alpha
 - flutter
 - jetbrains toolbox
-- nvm
