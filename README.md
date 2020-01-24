@@ -28,10 +28,8 @@ vagrant up
 
 Add tasks for the following
 
-- krew
 - sdkman/jdk/maven
 - awscli v2 alpha
 - flutter
 - jetbrains toolbox
-- chromeos android studio
 - nvm

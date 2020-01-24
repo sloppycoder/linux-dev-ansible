@@ -25,3 +25,37 @@
     group: root
     creates: "{{ tools_path }}/kustomize"
   become: yes
+
+- name: create temporarily directory for krew
+  file:
+    path: ~/tmp/krew
+    state: directory
+
+- name: Download krew.tar.gz and krew.yaml
+  get_url:
+    url: "https://github.com/kubernetes-sigs/krew/releases/download/{{ krew_version }}/{{ item }}"
+    remote_src: yes
+    dest: ~/tmp/krew/{{ item }}
+  with_items:
+    - krew.tar.gz
+    - krew.yaml
+
+- name: Install krew
+  shell:
+    cmd: |
+      set -e
+      cd ~/tmp/krew
+      tar zxf krew.tar.gz
+      ./krew-linux_amd64 install --manifest=krew.yaml --archive=krew.tar.gz
+      ./krew-linux_amd64 update
+      cd ..
+      rm -rf krew
+    creates: ~/.krew/bin/kubectl-krew
+
+- name: Add .krew/bin to PATH in .zshrc
+  blockinfile:
+    path: ~/.zshrc
+    insertafter: EOF
+    marker: "# krew {mark} "
+    block: |
+      export PATH=$HOME/.krew/bin:$PATH
