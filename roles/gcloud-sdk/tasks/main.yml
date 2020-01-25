@@ -7,6 +7,7 @@
 - name: Add APT repository
   apt_repository:
     repo: "deb http://packages.cloud.google.com/apt cloud-sdk main"
+    filename: google-cloud-sdk
     state: present
   become: yes
 

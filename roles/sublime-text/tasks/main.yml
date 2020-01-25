@@ -6,7 +6,8 @@
 
 - name: Add APT repository
   apt_repository:
-    repo: deb https://download.sublimetext.com/ apt/stable/
+    repo: deb https://download.sublimetext.com/ apt/stable
+    filename: sublime-text
     state: present
   become: yes
 
