@@ -1,0 +1,54 @@
+- name: Import signing key into apt
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  become: yes
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+
+- name: Import signing key into apt
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  become: yes
+  when: ansible_distribution == 'Debian'
+
+
+- name: Add APT repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    filename: docker-ce
+    state: present
+  become: yes
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
+
+- name: Add APT repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
+    filename: docker-ce
+    state: present
+  become: yes
+  when: ansible_distribution == 'Debian' and ansible_distribution_release == 'buster'
+
+- name: Add APT repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+    filename: docker-ce
+    state: present
+  become: yes
+  when: ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch'
+
+- name: Install Docker CE from APT repository
+  apt:
+    update_cache: yes
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  become: yes
+
+
+- name: add user to docker group
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+  become: yes
