@@ -49,7 +49,6 @@
       ./krew-linux_amd64 install --manifest=krew.yaml --archive=krew.tar.gz
       ./krew-linux_amd64 update
       cd ..
-      rm -rf krew
     creates: ~/.krew/bin/kubectl-krew
 
 - name: Add .krew/bin to PATH in .zshrc
