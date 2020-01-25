@@ -39,3 +39,4 @@ sudo apt install git ansible
 Add tasks for the following
 
 - flutter
+- auto install commonly used VSCode extensions
