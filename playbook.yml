@@ -7,9 +7,9 @@
     - oh-my-zsh
     - kube-tools
     - sublime-text
-    - golang
-    - gcloud-sdk
-    - awscli-v2
-    - nvm
-    - sdkman
-    - vscode
+    # - golang
+    # - gcloud-sdk
+    # - awscli-v2
+    # - nvm
+    # - sdkman
+    # - vscode

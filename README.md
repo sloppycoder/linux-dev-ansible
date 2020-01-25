@@ -25,7 +25,13 @@ vagrant up
 ## run on local server
 
 ```
-./run
+# install git and ansible first
+sudo apt install git ansible
+
+# edit playbook.yml to select the tools needed
+
+# start the playbook to install tools
+./setup
 ```
 
 ## TODO
