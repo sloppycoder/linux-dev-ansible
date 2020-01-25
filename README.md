@@ -12,7 +12,7 @@ Install the following items for my usualy development work
 - sublime text
 - nvm and nodejs runtime
 
-Tested on Debian/Buster and Ubuntu 18.04 LTS
+Tested on Debian/Buster, Debian/Stretch and Ubuntu Bionic
 
 ## test with Vagrant
 
