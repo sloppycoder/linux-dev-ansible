@@ -7,7 +7,7 @@
 
 - name: Add sdk init .zshrc
   blockinfile:
-    path: ~/.zshrc
+    destfile: ~/.zshrc
     insertafter: EOF
     marker: "# sdk {mark} "
     block: |

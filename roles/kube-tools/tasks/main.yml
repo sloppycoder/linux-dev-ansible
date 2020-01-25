@@ -54,7 +54,7 @@
 
 - name: Add .krew/bin to PATH in .zshrc
   blockinfile:
-    path: ~/.zshrc
+    destfile: ~/.zshrc
     insertafter: EOF
     marker: "# krew {mark} "
     block: |

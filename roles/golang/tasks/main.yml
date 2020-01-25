@@ -19,7 +19,7 @@
 
 - name: Add go related environment variables to .zshrc
   blockinfile:
-    path: ~/.zshrc
+    destfile: ~/.zshrc
     insertafter: EOF
     marker: "# golang {mark} "
     block: |

@@ -7,7 +7,7 @@
 
 - name: Add nvm init .zshrc
   blockinfile:
-    path: ~/.zshrc
+    destfile: ~/.zshrc
     insertafter: EOF
     marker: "# nvm {mark} "
     block: |
