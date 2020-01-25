@@ -22,7 +22,7 @@
     dest: "~/.oh-my-zsh/custom/plugins/{{ item.dest }}"
     update: no
     depth: 1
-  loop:
+  with_items:
     - {
         repo: "https://github.com/zsh-users/zsh-autosuggestions",
         dest: "zsh-autosuggestions",
