@@ -2,6 +2,7 @@
   apt:
     update_cache: yes
     pkg:
+      - apt-transport-https
       - build-essential
       - curl
       - jq
