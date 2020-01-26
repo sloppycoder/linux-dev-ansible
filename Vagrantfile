@@ -13,7 +13,6 @@ $user_setup = <<END_OF_USER_SETUP
 
 git clone https://github.com/sloppycoder/linux-dev-ansible.git
 cd linux-dev-ansible
-./setup
 
 END_OF_USER_SETUP
 
