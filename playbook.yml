@@ -5,7 +5,8 @@
   roles:
     - common
     - oh-my-zsh
-    - kube-tools
+    # - kube-tools
+    # - minikube
     # - sublime-text
     # - golang
     # - gcloud-sdk

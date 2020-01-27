@@ -1,0 +1,28 @@
+- name: Install required packages
+  apt:
+    update_cache: yes
+    pkg:
+      - qemu-kvm 
+      - libvirt-bin 
+      - ubuntu-vm-builder 
+      - bridge-utils
+      - virt-manager
+  become: yes
+
+- name: Download minikube binary
+  get_url:
+    url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64"
+    dest: "{{ tools_path }}/minikube"
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+
+- name: add user to related groups
+  user:
+    name: "{{ ansible_user_id }}"
+    groups:  
+      - kvm 
+      - libvirt 
+      - libvirt-qemu
+  become: yes

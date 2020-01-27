@@ -11,8 +11,9 @@ Install the following items for my usualy development work
 - sdkman, openjdk, maven
 - sublime text
 - nvm and nodejs runtime
+- minikube
 
-Tested on Debian/Buster, Debian/Stretch and Ubuntu Bionic
+Tested on Debian/Buster, Debian/Stretch and Ubuntu Bionic. minikube is only tested on Ubuntu Bionic
 
 ## test with Vagrant
 
