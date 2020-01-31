@@ -3,7 +3,7 @@
     cmd: |
       set -e
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
-    creates: ~/.nvm/nvm.sh
+    creates: ~/.config/nvm/nvm.sh
 
 - name: Add nvm init .zshrc
   blockinfile:
@@ -11,10 +11,10 @@
     insertafter: EOF
     marker: "# nvm {mark} "
     block: |
-      export NVM_DIR=$HOME/.nvm
+      export NVM_DIR=$HOME/.config/nvm
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 - name: Install nodejs runtime
   shell:
-    cmd: /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
-    creates: ~/.nvm/alias
+    cmd: /bin/bash -c "source ~/.config/nvm/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
+    creates: ~/.config/.nvm/alias
