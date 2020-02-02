@@ -1,9 +1,23 @@
+- name: set nvm_dir based on xdg_config_home
+  set_fact: 
+    nvm_dir: "{{ ansible_env.XDG_CONFIG_HOME }}/nvm"
+  when: ansible_env.XDG_CONFIG_HOME is defined
+
+- name: set nvm_dir if xdg_config_home is
+  set_fact: 
+    nvm_dir: "~/.nvm"
+  when: ansible_env.XDG_CONFIG_HOME is undefined
+
+- debug:
+    msg: 
+      - using {{ nvm_dir }} as NVM_DIR
+
 - name: Install nvm
   shell:
     cmd: |
       set -e
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh | bash
-    creates: ~/.config/nvm/nvm.sh
+    creates: "{{ nvm_dir }}/nvm.sh"
 
 - name: Add nvm init .zshrc
   blockinfile:
@@ -11,10 +25,10 @@
     insertafter: EOF
     marker: "# nvm {mark} "
     block: |
-      export NVM_DIR=$HOME/.config/nvm
+      export NVM_DIR={{ nvm_dir }}
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 - name: Install nodejs runtime
   shell:
-    cmd: /bin/bash -c "source ~/.config/nvm/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
-    creates: ~/.config/.nvm/alias
+    cmd: /bin/bash -c "source {{ nvm_dir }}/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
+    creates: "{{ nvm_dir }}/alias"
