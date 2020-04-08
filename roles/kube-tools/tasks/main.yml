@@ -49,3 +49,9 @@
     marker: "# krew {mark} "
     block: |
       export PATH=$HOME/.krew/bin:$PATH
+
+- name: Download yq binary
+  get_url:
+    url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_amd64"
+    dest: ~/.local/bin/yq
+    mode: 0755

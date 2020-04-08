@@ -21,19 +21,6 @@
     path: ~/.local/bin
     state: directory
 
-- name: Install pipenv using apt
-  apt:
-    pkg:
-      - pipenv
-  become: yes
-  when: ansible_distribution == 'Debian' and ansible_distribution_release != 'stretch'
-
-- name: Perform user install of pipenv
-  shell:
-    cmd: python3 -m pip install --user pipenv
-    creates: ~/.local/bin/pipenv
-  when: ansible_distribution == 'Ubuntu' or ( ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch' )
-
 - name: Creating new .gitconfig
   template:
     src: gitconfig.j2
@@ -41,8 +28,17 @@
     mode: 0644
     force: no
 
-- name: Download yq binary
-  get_url:
-    url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_amd64"
-    dest: ~/.local/bin/yq
-    mode: 0755
+# comment out pipenv temporarily, need to assess if it's really needed
+# - name: Install pipenv using apt
+#   apt:
+#     pkg:
+#       - pipenv
+#   become: yes
+#   when: ansible_distribution == 'Debian' and ansible_distribution_release != 'stretch'
+
+# - name: Perform user install of pipenv
+#   shell:
+#     cmd: python3 -m pip install --user pipenv
+#     creates: ~/.local/bin/pipenv
+#   when: ansible_distribution == 'Ubuntu' or ( ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch' )
+
