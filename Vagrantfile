@@ -4,7 +4,7 @@
 $system_setup = <<END_OF_SETUP
 
 apt-get update 
-apt-get install -y ansible git
+apt-get install -y git python-minimal
 
 END_OF_SETUP
 
@@ -18,9 +18,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-	config.vm.box = "debian/stretch64"
+	# config.vm.box = "debian/stretch64"
 	# config.vm.box = "debian/buster64"
-	# config.vm.box = "generic/ubuntu1804"
+	config.vm.box = "generic/ubuntu1804"
 
 	config.vm.box_check_update = false
 
