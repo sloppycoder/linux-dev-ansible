@@ -2,14 +2,13 @@
   unarchive:
     src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
     remote_src: yes
-    dest: /tmp
-    creates: /tmp/aws/install
+    dest: ~/tmp
+    creates: ~/tmp/aws/install
 
 - name: Install AWS CLI v2
   shell:
     cmd: |
       set -e
-      /tmp/aws/install
-      rm -rf /tmp/aws
-    creates: /usr/local/bin/aws
-  become: yes
+      ~/tmp/aws/install --install-dir ~/.local/aws-cli --bin-dir ~/.local/bin
+      rm -rf ~/tmp/aws
+    creates: ~/.local/bin/aws

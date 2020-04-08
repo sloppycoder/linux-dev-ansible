@@ -1,2 +1,2 @@
-minikube_version: v1.4.0
-tools_path: /usr/local/bin
+minikube_version: v1.8.2
+tools_path: ~/.local/bin

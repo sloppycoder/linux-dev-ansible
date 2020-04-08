@@ -3,8 +3,8 @@
     update_cache: yes
     pkg:
       - qemu-kvm 
-      - libvirt-bin 
-      - ubuntu-vm-builder 
+      - libvirt-clients 
+      - libvirt-daemon-system
       - bridge-utils
       - virt-manager
   become: yes
@@ -13,10 +13,7 @@
   get_url:
     url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64"
     dest: "{{ tools_path }}/minikube"
-    owner: root
-    group: root
     mode: 0755
-  become: yes
 
 - name: add user to related groups
   user:

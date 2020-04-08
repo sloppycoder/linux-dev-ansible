@@ -2,29 +2,20 @@
   get_url:
     url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
     dest: "{{ tools_path }}/kubectl"
-    owner: root
-    group: root
     mode: 0755
-  become: yes
 
 - name: Download skaffold binary
   get_url:
     url: "https://storage.googleapis.com/skaffold/releases/{{ skaffold_version }}/skaffold-linux-amd64"
     dest: "{{ tools_path }}/skaffold"
-    owner: root
-    group: root
     mode: 0755
-  become: yes
 
 - name: Download and extract kustomize binary
   unarchive:
     src: "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F{{ kustomize_version }}/kustomize_{{ kustomize_version }}_linux_amd64.tar.gz"
     remote_src: yes
     dest: "{{ tools_path }}"
-    owner: root
-    group: root
     creates: "{{ tools_path }}/kustomize"
-  become: yes
 
 - name: create temporarily directory for krew
   file:

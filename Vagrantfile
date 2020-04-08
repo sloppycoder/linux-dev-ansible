@@ -1,5 +1,5 @@
 #
-#  this box is for doing development work on Ubuntu 18.04 LTS
+#  this box is for doing development work
 #
 $system_setup = <<END_OF_SETUP
 
@@ -11,8 +11,6 @@ END_OF_SETUP
 
 $user_setup = <<END_OF_USER_SETUP
 
-git clone https://github.com/sloppycoder/linux-dev-ansible.git
-cd linux-dev-ansible
 
 END_OF_USER_SETUP
 
