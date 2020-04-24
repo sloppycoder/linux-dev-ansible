@@ -5,13 +5,13 @@
   roles:
     - common
     - oh-my-zsh
-    # - kube-tools
-    # - minikube
+    - kube-tools
+    - minikube
     # - sublime-text
-    # - golang
-    # - gcloud-sdk
-    # - awscli-v2
-    # - nvm
-    # - sdkman
+    - golang
+    - gcloud-sdk
+    - awscli-v2
+    - nvm
+    - sdkman
     # - vscode
     # - docker-ce
