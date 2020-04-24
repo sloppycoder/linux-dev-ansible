@@ -1,2 +1,2 @@
-nodejs_version: lts/-1
+nodejs_version: lts/Erbium
 nvm_version: v0.35.3
