@@ -28,7 +28,7 @@
       export NVM_DIR={{ nvm_dir }}
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-- name: Install nodejs runtime
+- name: Install nodejs runtime {{ nodejs_version }}
   shell:
     cmd: /bin/bash -c "source {{ nvm_dir }}/nvm.sh && nvm install {{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
     creates: "{{ nvm_dir }}/alias"
