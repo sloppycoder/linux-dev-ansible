@@ -9,7 +9,7 @@
       - virt-manager
   become: yes
 
-- name: Download minikube binary
+- name: Download minikube binary {{ minikube_version }}
   get_url:
     url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64"
     dest: "{{ tools_path }}/minikube"
