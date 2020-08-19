@@ -1,4 +1,5 @@
 kubectl_version: v1.16.9
 skaffold_version: latest
 yq_version: 3.3.0
+k9s_version: 0.21.7
 tools_path: ~/.local/bin

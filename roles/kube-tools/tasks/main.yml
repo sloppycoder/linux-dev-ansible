@@ -18,6 +18,13 @@
       curl https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash
     creates: "{{ tools_path }}/kustomize"
 
+- name: Download k9s binary {{ k9s_version }}
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_Linux_x86_64.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/k9s
+
 - name: Download yq binary {{ yq_version }}
   get_url:
     url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_amd64"
