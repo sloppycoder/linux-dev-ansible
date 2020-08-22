@@ -28,17 +28,10 @@
     mode: 0644
     force: no
 
-# comment out pipenv temporarily, need to assess if it's really needed
-# - name: Install pipenv using apt
-#   apt:
-#     pkg:
-#       - pipenv
-#   become: yes
-#   when: ansible_distribution == 'Debian' and ansible_distribution_release != 'stretch'
-
-# - name: Perform user install of pipenv
-#   shell:
-#     cmd: python3 -m pip install --user pipenv
-#     creates: ~/.local/bin/pipenv
-#   when: ansible_distribution == 'Ubuntu' or ( ansible_distribution == 'Debian' and ansible_distribution_release == 'stretch' )
-
+# pipenv not in repo for earlier version of Debian
+- name: Install pipenv using apt
+  apt:
+    pkg:
+      - pipenv
+  ignore_errors: yes
+  become: yes
