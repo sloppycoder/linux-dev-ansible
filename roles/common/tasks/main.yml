@@ -28,10 +28,15 @@
     mode: 0644
     force: no
 
-# pipenv not in repo for earlier version of Debian
 - name: Install pipenv using apt
   apt:
     pkg:
       - pipenv
   ignore_errors: yes
+  become: yes
+
+- name: Install Github CLI using deb package 
+  apt:
+    deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.deb 
+    state: present
   become: yes
