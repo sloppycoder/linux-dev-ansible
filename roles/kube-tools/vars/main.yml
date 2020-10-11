@@ -1,5 +1,5 @@
-kubectl_version: v1.16.9
+kubectl_version: v1.17.12
 skaffold_version: latest
-yq_version: 3.3.0
-k9s_version: 0.21.7
+yq_version: 3.4.0
+k9s_version: v0.22.1
 tools_path: ~/.local/bin
