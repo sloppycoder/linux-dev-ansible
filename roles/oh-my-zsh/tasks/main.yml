@@ -10,6 +10,29 @@
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu']
 
+- name: Install required packages
+  yum:
+    name:
+      - git
+      - zsh
+  become: yes
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
+
+- name: Download peco binary {{ peco_version }}
+  unarchive:
+    src: "https://github.com/peco/peco/releases/download/{{ peco_version }}/peco_linux_amd64.tar.gz"
+    remote_src: yes
+    dest: ~/tmp
+    creates: ~tmp/peco_linux_amd64
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
+
+- name: Install peco
+  shell:
+    cmd: |
+      set -e
+      cp ~/tmp/peco_linux_amd64/peco ~/.local/bin/peco
+    creates: ~/.local/bin/aws
+
 - name: Clone oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git

@@ -3,11 +3,13 @@ ZSH_THEME="gentoo"
 DISABLE_AUTO_UPDATE="true"
 DISABLE_UPDATE_PROMPT="true"
 
+# peco maybe in ~/.local/bin, so this must be 
+# before oh-my-zsh is initialized
+export PATH=$HOME/.local/bin:$PATH
 export EDITOR=vi
 
 plugins=(
   git
-  # krew
   # kubectl
   # nvm
   # sdk
@@ -16,5 +18,3 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-export PATH=$HOME/.local/bin:$PATH
