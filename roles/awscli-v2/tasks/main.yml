@@ -10,5 +10,4 @@
     cmd: |
       set -e
       ~/tmp/aws/install --install-dir ~/.local/aws-cli --bin-dir ~/.local/bin
-      rm -rf ~/tmp/aws
     creates: ~/.local/bin/aws

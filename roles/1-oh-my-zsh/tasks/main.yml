@@ -23,15 +23,16 @@
     src: "https://github.com/peco/peco/releases/download/{{ peco_version }}/peco_linux_amd64.tar.gz"
     remote_src: yes
     dest: ~/tmp
-    creates: ~tmp/peco_linux_amd64
+    creates: ~/tmp/peco_linux_amd64/peco
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
-- name: Install peco
+- name: Install peco binary
   shell:
     cmd: |
       set -e
       cp ~/tmp/peco_linux_amd64/peco ~/.local/bin/peco
-    creates: ~/.local/bin/aws
+    creates: ~/.local/bin/peco
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
 - name: Clone oh-my-zsh
   git:
