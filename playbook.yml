@@ -26,5 +26,5 @@
     - role: docker-ce
       when: ansible_distribution in ['Debian', 'Ubuntu']
     - role: minikube
-      when: ansible_distribution in ['Debian', 'Ubuntu']
+      when: ansible_distribution in ['Ubuntu']
  

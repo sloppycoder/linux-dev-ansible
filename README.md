@@ -2,18 +2,20 @@
 
 Install the following items for my usualy development work
 
-- install common packages including jq, git, git-gui, etc
+- install common packages including jq, git, etc
 - zsh, oh-my-zsh and custom plugin
 - golang compiler
-- google cloud sdk
-- kubernetes related command line tools, kubectl, skaffold, kustomize
-- aws sdk v2 (alpha)
+- google cloud sdk and additional components including kubectl, kustomize and skaffold
+- kubernetes related command line tools, including k9s
+- aws sdk v2
 - sdkman, openjdk, maven
 - sublime text
 - nvm and nodejs runtime
+- nodejs enviornment manager volta
+- python environment manager poetry
 - minikube
 
-Tested on Debian/Buster, Debian/Stretch and Ubuntu Bionic. minikube is only tested on Ubuntu Bionic
+Tested on Debian/Buster, Debian/Stretch, Ubuntu Bionic, Ubuntu Focal. minikube is only tested on Ubuntu
 
 ## test with Vagrant
 
