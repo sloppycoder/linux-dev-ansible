@@ -1,22 +1,22 @@
-- name: Import signing key into apt
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-  become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+- name: Download Google Cloud SDK
+  unarchive:
+    src: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ gcloud_sdk_version }}-linux-x86_64.tar.gz
+    remote_src: yes
+    dest: ~/.local
+    creates: ~/.local/google-cloud-sdk/bin/gcloud
 
-- name: Add APT repository
-  apt_repository:
-    repo: "deb http://packages.cloud.google.com/apt cloud-sdk main"
-    filename: google-cloud-sdk
-    state: present
-  become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+- name: Add Google Cloud SDK pathto .zshrc
+  blockinfile:
+    destfile: ~/.zshrc
+    insertafter: EOF
+    marker: "# gcloud-sdk {mark} "
+    block: |
+      export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
 
-- name: Install gcloud SDK from APT repository
-  apt:
-    update_cache: yes
-    pkg:
-      - google-cloud-sdk
-  become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+- name: Install kubectl, kustomize and skaffold
+  shell:
+    cmd: |
+      set -e
+      gcloud components install kubectl kustomize skaffold --quiet
+    creates: ~/.local/google-cloud-sdk/bin/kustomize
+

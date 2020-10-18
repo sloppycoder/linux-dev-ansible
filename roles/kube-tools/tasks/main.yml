@@ -1,22 +1,8 @@
-- name: Download kubectl binary {{ kubectl_version }}
-  get_url:
-    url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
-    dest: "{{ tools_path }}/kubectl"
-    mode: 0755
-
-- name: Download skaffold binary {{ skaffold_version }}
-  get_url:
-    url: "https://storage.googleapis.com/skaffold/releases/{{ skaffold_version }}/skaffold-linux-amd64"
-    dest: "{{ tools_path }}/skaffold"
-    mode: 0755
-
-- name: Running install_kustomize.sh
-  shell:
-    cmd: |
-      set -e
-      cd {{ tools_path }}
-      curl https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash
-    creates: "{{ tools_path }}/kustomize"
+# - name: Download kubectl binary {{ kubectl_version }}
+#   get_url:
+#     url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+#     dest: "{{ tools_path }}/kubectl"
+#     mode: 0755
 
 - name: Download k9s binary {{ k9s_version }}
   unarchive:
