@@ -3,15 +3,15 @@
 #
 - hosts: all
   roles:
-    - common
-    - oh-my-zsh
+    - 0-common
+    - 1-oh-my-zsh
     - kube-tools
-    - minikube
+    # - minikube
     - golang
-    - gcloud-sdk
+    # # - gcloud-sdk
     - awscli-v2
-    - nvm
+    # - nvm
     - sdkman
-    # - sublime-text
+    # # - sublime-text
     # - vscode
     # - docker-ce
