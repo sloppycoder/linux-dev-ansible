@@ -1,4 +1,4 @@
-- name: Install commonly used packages
+- name: Install commonly used packages via APT
   apt:
     update_cache: yes
     pkg:
@@ -16,6 +16,22 @@
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu']
 
+- name: Install commonly used packages via YUM
+  yum:
+    name:
+      - '@Development tools'
+      - curl
+      - jq
+      - git
+      - python3-pip
+      - telnet
+      - tmux
+      - unzip
+      - wget
+      - zip
+  become: yes
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
+
 - name: create .local/bin directory
   file:
     path: ~/.local/bin
@@ -28,10 +44,20 @@
     mode: 0644
     force: no
 
+- name: check Github CLI has been installed
+  shell: 'which gh'
+  register: ghcli_present
+  ignore_errors: true
+
 - name: Install Github CLI using deb package 
   apt:
     deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.deb 
-    state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu'] and not ghcli_present
 
-  # TODO: add peotry to replace pipenv
+- name: Install Github CLI using rpm package 
+  yum:
+    name: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.rpm 
+    disable_gpg_check: yes
+  become: yes
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux'] and not ghcli_present
