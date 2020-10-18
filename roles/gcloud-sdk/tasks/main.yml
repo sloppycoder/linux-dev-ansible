@@ -17,6 +17,6 @@
   shell:
     cmd: |
       set -e
-      gcloud components install kubectl kustomize skaffold --quiet
+      ~/.local/google-cloud-sdk/bin/gcloud components install kubectl kustomize skaffold --quiet
     creates: ~/.local/google-cloud-sdk/bin/kustomize
 
