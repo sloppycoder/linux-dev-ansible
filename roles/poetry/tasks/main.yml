@@ -2,10 +2,10 @@
   shell:
     cmd: |
       set -e
-      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python38 -
+      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
     creates: ~/.poetry/bin/poetry
 
-- name: Add Google Cloud SDK pathto .zshrc
+- name: Add poetry path to .zshrc
   blockinfile:
     destfile: ~/.zshrc
     insertafter: EOF
