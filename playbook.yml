@@ -13,8 +13,9 @@
     - awscli-v2
     # language related
     - golang
-    - nvm
+    - volta
     - sdkman
+    ## - nvm  # nvm is way slower than volta
     - poetry
     # editor requires GUI, so far I don't need them for CentOS/RHEL
     - role: sublime-text
