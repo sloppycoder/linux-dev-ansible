@@ -45,7 +45,9 @@
     force: no
 
 - name: check Github CLI has been installed
-  shell: 'which gh'
+  shell: 
+    cmd: 'which gh'
+    warn: no
   register: which_gh
   ignore_errors: true
 
