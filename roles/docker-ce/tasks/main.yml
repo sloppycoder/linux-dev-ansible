@@ -3,6 +3,7 @@
     url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
   
 - name: Add APT repository
@@ -11,6 +12,7 @@
     filename: docker-ce
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 
 - name: Install Docker CE from APT repository
@@ -21,6 +23,7 @@
       - docker-ce-cli
       - containerd.io
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 
 - name: add user to docker group

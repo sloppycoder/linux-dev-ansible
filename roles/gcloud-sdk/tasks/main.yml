@@ -3,6 +3,7 @@
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Add APT repository
   apt_repository:
@@ -10,6 +11,7 @@
     filename: google-cloud-sdk
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Install gcloud SDK from APT repository
   apt:
@@ -17,3 +19,4 @@
     pkg:
       - google-cloud-sdk
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']

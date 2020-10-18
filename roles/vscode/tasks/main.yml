@@ -4,12 +4,14 @@
     pkg:
       - libasound2
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Import signing key into apt
   apt_key:
     url: "https://packages.microsoft.com/keys/microsoft.asc"
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Add APT repository
   apt_repository:
@@ -17,6 +19,7 @@
     filename: vscode
     state: present
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Install VSCode from APT repository
   apt:
@@ -24,3 +27,4 @@
     pkg:
       - code
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']

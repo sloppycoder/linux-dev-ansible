@@ -14,6 +14,7 @@
       - wget
       - zip
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: create .local/bin directory
   file:
@@ -34,4 +35,3 @@
   become: yes
 
   # TODO: add peotry to replace pipenv
-  

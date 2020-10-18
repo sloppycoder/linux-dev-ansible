@@ -8,6 +8,7 @@
       - peco
       - zsh
   become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
 
 - name: Clone oh-my-zsh
   git:
