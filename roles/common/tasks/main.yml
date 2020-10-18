@@ -7,7 +7,6 @@
       - curl
       - jq
       - git
-      - git-gui
       - python3-pip
       - telnet
       - tmux
@@ -28,15 +27,11 @@
     mode: 0644
     force: no
 
-- name: Install pipenv using apt
-  apt:
-    pkg:
-      - pipenv
-  ignore_errors: yes
-  become: yes
-
 - name: Install Github CLI using deb package 
   apt:
     deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.deb 
     state: present
   become: yes
+
+  # TODO: add peotry to replace pipenv
+  
