@@ -46,18 +46,23 @@
 
 - name: check Github CLI has been installed
   shell: 'which gh'
-  register: ghcli_present
+  register: which_gh
   ignore_errors: true
 
 - name: Install Github CLI using deb package 
   apt:
     deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.deb 
   become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu'] and not ghcli_present
+  when: ansible_distribution in ['Debian', 'Ubuntu'] and which_gh.rc != 0
 
 - name: Install Github CLI using rpm package 
   yum:
     name: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.rpm 
     disable_gpg_check: yes
   become: yes
-  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux'] and not ghcli_present
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux'] and which_gh.rc != 0
+
+- name: Creates tmp directory
+  file:
+    path: ~/tmp
+    state: directory
