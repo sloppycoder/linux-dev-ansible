@@ -8,9 +8,9 @@
     - kube-tools
     # - minikube
     - golang
-    # # - gcloud-sdk
+    - gcloud-sdk
     - awscli-v2
-    # - nvm
+    - nvm
     - sdkman
     # # - sublime-text
     # - vscode
