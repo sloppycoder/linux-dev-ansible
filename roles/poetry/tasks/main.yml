@@ -1,0 +1,14 @@
+- name: Install python package manager Poetry
+  shell:
+    cmd: |
+      set -e
+      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python38 -
+    creates: ~/.poetry/bin/poetry
+
+- name: Add Google Cloud SDK pathto .zshrc
+  blockinfile:
+    destfile: ~/.zshrc
+    insertafter: EOF
+    marker: "# peotry {mark} "
+    block: |
+      export PATH=$HOME/.poetry/bin:$PATH

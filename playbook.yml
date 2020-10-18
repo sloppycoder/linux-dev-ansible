@@ -15,7 +15,7 @@
     - golang
     - nvm
     - sdkman
-    # - peotry
+    - poetry
     # editor requires GUI, so far I don't need them for CentOS/RHEL
     - role: sublime-text
       when: ansible_distribution in ['Debian', 'Ubuntu']
