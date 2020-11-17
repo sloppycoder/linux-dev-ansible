@@ -5,7 +5,7 @@
     dest: ~/.local
     creates: ~/.local/google-cloud-sdk/bin/gcloud
 
-- name: Add Google Cloud SDK pathto .zshrc
+- name: Add Google Cloud SDK path to .zshrc
   blockinfile:
     destfile: ~/.zshrc
     insertafter: EOF
