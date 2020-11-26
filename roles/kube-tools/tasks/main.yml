@@ -9,9 +9,15 @@
   unarchive:
     src: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
     remote_src: yes
-    dest: ~/.local/bin
-    creates: ~/.local/bin/helm
+    dest: ~/tmp
+    creates: ~/tmp/inux-amd64/helm
 
+- name: Install helm binary
+  shell:
+    cmd: |
+      set -e
+      cp ~/tmp/linux-amd64/helm ~/.local/bin/helm
+    creates: ~/.local/bin/helm
 
 - name: Download yq binary {{ yq_version }}
   get_url:
