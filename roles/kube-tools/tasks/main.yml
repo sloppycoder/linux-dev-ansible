@@ -19,6 +19,13 @@
       cp ~/tmp/linux-amd64/helm ~/.local/bin/helm
     creates: ~/.local/bin/helm
 
+- name: Download dapr CLI binary {{ dapr_version }}
+  unarchive:
+    src: "https://github.com/dapr/cli/releases/download/{{ dapr_version }}/dapr_linux_amd64.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/dapr
+
 - name: Download yq binary {{ yq_version }}
   get_url:
     url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_amd64"
