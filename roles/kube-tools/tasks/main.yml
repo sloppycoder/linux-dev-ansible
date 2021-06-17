@@ -1,3 +1,13 @@
+- name: ensure ~/.local/bin directory exists
+  file:
+    path: ~/.local/bin
+    state: directory
+
+- name: ensure ~/tmp directory exists
+  file:
+    path: ~/tmp
+    state: directory
+
 - name: Download k9s binary {{ k9s_version }}
   unarchive:
     src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_{{ k9s_version }}_Linux_x86_64.tar.gz"
@@ -31,3 +41,11 @@
     url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_amd64"
     dest: ~/.local/bin/yq
     mode: 0755
+
+- name: delete useless files
+  file:
+    path: ~/.local/bin/{{ item }}
+    state: absent
+  with_items:
+    - README
+    - LICENSE
