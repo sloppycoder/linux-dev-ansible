@@ -8,6 +8,25 @@
     path: ~/tmp
     state: directory
 
+- name: Download kubectl binary {{ kubectl_version }}
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+    dest: "{{ tools_path }}/kubectl"
+    mode: 0755
+
+- name: Download skaffold binary {{ skaffold_version }}
+  get_url:
+    url: "https://storage.googleapis.com/skaffold/releases/{{ skaffold_version }}/skaffold-linux-amd64"
+    dest: "{{ tools_path }}/skaffold"
+    mode: 0755
+
+- name: Download kustomize binary {{ kustomize_version }}
+  unarchive:
+    src: "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/{{ kustomize_version }}/kustomize_{{ kustomize_version }}_linux_amd64.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/kustomize
+
 - name: Download k9s binary {{ k9s_version }}
   unarchive:
     src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_{{ k9s_version }}_Linux_x86_64.tar.gz"
