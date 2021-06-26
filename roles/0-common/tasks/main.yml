@@ -1,3 +1,7 @@
+- name: Determine binary variable
+  set_fact:
+    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+
 - name: Install commonly used packages via APT
   apt:
     update_cache: yes

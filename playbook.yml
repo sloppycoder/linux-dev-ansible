@@ -1,10 +1,7 @@
 #
 # some roles are commented out by default. uncomment them to install
+# 0-common is required as it sets the dpkg_arch variable
 #
-#
-- name: Determine binary variable
-  set_fact:
-    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 
 - hosts: all
   roles:
