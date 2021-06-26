@@ -4,27 +4,27 @@
 #
 - hosts: all
   roles:
-    # basics
+    ### basics
     - 0-common
     - 1-oh-my-zsh
-    # cloud stuff
-    - gcloud-sdk
-    - kube-tools
-    - awscli-v2
-    # language related
-    - golang
-    - volta
-    - sdkman
-    ## - nvm  # nvm is way slower than volta
-    - poetry
-    # editor requires GUI, so far I don't need them for CentOS/RHEL
-    - role: sublime-text
-      when: ansible_distribution in ['Debian', 'Ubuntu']
-    - role: vscode
-      when: ansible_distribution in ['Debian', 'Ubuntu']
+    ### cloud stuff
+    # - gcloud-sdk
+    # - kube-tools
+    # - awscli-v2
+    ### language related
+    # - golang
+    # - volta
+    # - sdkman
+    # - nvm  # nvm is way slower than volta
+    # - poetry
+    ### editor requires GUI, only supports Debian and Ubuntu for now
+    ### as I have no need for them on CentOS/RHEL 
+    # - role: sublime-text
+    #   when: ansible_distribution in ['Debian', 'Ubuntu']
+    # - role: vscode
+    #   when: ansible_distribution in ['Debian', 'Ubuntu']
     # somewhat complicated, for now only do Debian/Ubuntu
-    - role: docker-ce
-      when: ansible_distribution in ['Debian', 'Ubuntu']
-    - role: minikube
-      when: ansible_distribution in ['Ubuntu']
- 
+    # - role: docker-ce
+    #   when: ansible_distribution in ['Debian', 'Ubuntu']
+    # - role: minikube
+    #   when: ansible_distribution in ['Debian', 'Ubuntu']
