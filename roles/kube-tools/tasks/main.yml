@@ -67,4 +67,5 @@
     state: absent
   with_items:
     - README
+    - README.md
     - LICENSE
