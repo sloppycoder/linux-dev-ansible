@@ -12,11 +12,3 @@
     marker: "# gcloud-sdk {mark} "
     block: |
       export PATH=$HOME/.local/google-cloud-sdk/bin:$PATH
-
-- name: Install kubectl, kustomize and skaffold
-  shell:
-    cmd: |
-      set -e
-      ~/.local/google-cloud-sdk/bin/gcloud components install kubectl kustomize skaffold --quiet
-    creates: ~/.local/google-cloud-sdk/bin/kustomize
-
