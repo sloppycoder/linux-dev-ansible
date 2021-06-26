@@ -1,6 +1,6 @@
 - name: Download AWS CLI v2
   unarchive:
-    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    src: https://awscli.amazonaws.com/awscli-exe-linux-{{ ansible_architecture }}.zip
     remote_src: yes
     dest: ~/tmp
     creates: ~/tmp/aws/install

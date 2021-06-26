@@ -20,17 +20,17 @@
 
 - name: Download peco binary {{ peco_version }}
   unarchive:
-    src: "https://github.com/peco/peco/releases/download/{{ peco_version }}/peco_linux_amd64.tar.gz"
+    src: "https://github.com/peco/peco/releases/download/{{ peco_version }}/peco_linux_{{ dpkg_arch }}.tar.gz"
     remote_src: yes
     dest: ~/tmp
-    creates: ~/tmp/peco_linux_amd64/peco
+    creates: ~/tmp/peco_linux_{{ dpkg_arch }}/peco
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
 - name: Install peco binary
   shell:
     cmd: |
       set -e
-      cp ~/tmp/peco_linux_amd64/peco ~/.local/bin/peco
+      cp ~/tmp/peco_linux_{{ dpkg_arch }}/peco ~/.local/bin/peco
     creates: ~/.local/bin/peco
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 

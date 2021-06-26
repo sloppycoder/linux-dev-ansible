@@ -53,13 +53,13 @@
 
 - name: Install Github CLI using deb package 
   apt:
-    deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.deb 
+    deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.deb 
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu'] and which_gh.rc != 0
 
 - name: Install Github CLI using rpm package 
   yum:
-    name: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_amd64.rpm 
+    name: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.rpm 
     disable_gpg_check: yes
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux'] and which_gh.rc != 0

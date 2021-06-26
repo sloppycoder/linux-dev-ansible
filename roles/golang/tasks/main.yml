@@ -9,7 +9,7 @@
 
 - name: Download and extract golang tarball {{ go_version }}
   unarchive:
-    src: "https://dl.google.com/go/go{{ go_version }}.linux-amd64.tar.gz"
+    src: "https://dl.google.com/go/go{{ go_version }}.linux-{{ dpkg_arch }}.tar.gz"
     remote_src: yes
     dest: "{{ goroot_parent_path }}"
     owner: root

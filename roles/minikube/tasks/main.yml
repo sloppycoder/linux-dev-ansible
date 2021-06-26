@@ -12,7 +12,7 @@
 
 - name: Download minikube binary {{ minikube_version }}
   get_url:
-    url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64"
+    url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-{{ dpkg_arch }}"
     dest: "{{ tools_path }}/minikube"
     mode: 0755
   when: ansible_distribution in ['Debian', 'Ubuntu']
