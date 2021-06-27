@@ -17,7 +17,7 @@
     # - volta
     # - sdkman
     # - nvm  # nvm is way slower than volta
-    # - poetry
+    # - python
     ### editor requires GUI, only supports Debian and Ubuntu for now
     ### as I have no need for them on CentOS/RHEL 
     # - role: sublime-text

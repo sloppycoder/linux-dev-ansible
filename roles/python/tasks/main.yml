@@ -1,0 +1,33 @@
+- name: Install build essentials for compiling C extensions
+  apt:
+    update_cache: yes
+    pkg:
+      - build-essential
+      - python3-pip
+      - python3-venv
+  become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu']
+
+- name: Install commonly used packages via YUM
+  yum:
+    name:
+      - '@Development tools'
+      - python3-pip
+      - python3-venv
+  become: yes
+  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
+
+- name: Install python package manager Poetry
+  shell:
+    cmd: |
+      set -e
+      curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+    creates: ~/.poetry/bin/poetry
+
+- name: Add poetry path to .zshrc
+  blockinfile:
+    destfile: ~/.zshrc
+    insertafter: EOF
+    marker: "# peotry {mark} "
+    block: |
+      export PATH=$HOME/.poetry/bin:$PATH
