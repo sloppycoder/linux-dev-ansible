@@ -46,6 +46,11 @@
     mode: 0644
     force: no
 
+- name: Creates tmp directory
+  file:
+    path: ~/tmp
+    state: directory
+
 - name: check Github CLI has been installed
   shell: 
     cmd: 'which gh'
@@ -57,11 +62,12 @@
   unarchive:
     src: "https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.tar.gz"
     remote_src: yes
-    dest: ~/.local/bin
-    creates: ~/.local/bin/gh
-    when: which_gh.rc != 0
+    dest: ~/tmp
+    creates: ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}/bin/gh
+  when: which_gh.rc != 0
 
-- name: Creates tmp directory
-  file:
-    path: ~/tmp
-    state: directory
+- name: Copy Github CLI binary to ~/.local/bin
+  shell:
+    cmd: 'cp ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}/bin/gh ~/.local/bin/. && rm -rf ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}'
+    creates: ~/.local/bin/gh
+  when: which_gh.rc != 0
