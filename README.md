@@ -6,7 +6,7 @@ Install the following items for my usualy development work
 - zsh, oh-my-zsh and custom plugin
 - golang compiler
 - google cloud sdk and additional components including kubectl, kustomize and skaffold
-- kubernetes related command line tools, including k9s
+- kubernetes related command line tools, kubectl, kustomize, helm, skaffold, dapr, k9s
 - aws sdk v2
 - sdkman, openjdk, maven
 - sublime text
@@ -15,13 +15,16 @@ Install the following items for my usualy development work
 - python environment manager poetry
 - minikube
 
-Tested on Debian/Buster, Debian/Stretch, Ubuntu Bionic, Ubuntu Focal. minikube is only tested on Ubuntu
+Tested on Debian/Buster, Ubuntu Bionic, Ubuntu Focal. minikube is only tested on Ubuntu
 
 ## test with Vagrant
 
 ```
+cd boxes/<box_directory>
 vagrant up
-./t
+cd ../..
+
+./t <box_directory>
 
 ```
 
@@ -31,8 +34,10 @@ vagrant up
 # install git and ansible first
 sudo apt install git ansible
 
-# edit playbook.yml to select the tools needed
+git clone <this_repo>
+cd <repo_directory>
 
+# edit playbook.yml to select the tools needed
 # start the playbook to install tools
 ./setup
 ```
@@ -42,4 +47,3 @@ sudo apt install git ansible
 Add tasks for the following
 
 - install commonly used VSCode extensions, i.e. go and python
-- install istio

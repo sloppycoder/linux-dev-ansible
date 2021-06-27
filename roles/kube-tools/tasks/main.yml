@@ -66,6 +66,5 @@
     path: ~/.local/bin/{{ item }}
     state: absent
   with_items:
-    - README
     - README.md
     - LICENSE
