@@ -13,7 +13,6 @@
     name:
       - '@Development tools'
       - python3-pip
-      - python3-venv
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 

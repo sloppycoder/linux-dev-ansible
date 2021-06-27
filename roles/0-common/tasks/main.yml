@@ -24,7 +24,6 @@
     name:
       - curl
       - git
-      - httpie
       - jq
       - telnet
       - tmux
