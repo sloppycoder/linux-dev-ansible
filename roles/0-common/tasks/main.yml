@@ -7,11 +7,10 @@
     update_cache: yes
     pkg:
       - apt-transport-https
-      - build-essential
       - curl
-      - jq
       - git
-      - python3-pip
+      - httpie
+      - jq
       - telnet
       - tmux
       - unzip
@@ -23,11 +22,10 @@
 - name: Install commonly used packages via YUM
   yum:
     name:
-      - '@Development tools'
       - curl
-      - jq
       - git
-      - python3-pip
+      - httpie
+      - jq
       - telnet
       - tmux
       - unzip
@@ -48,6 +46,13 @@
     mode: 0644
     force: no
 
+- name: Download k9s binary {{ k9s_version }}
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_{{ k9s_version }}_Linux_{{ ansible_architecture }}.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/k9s
+
 - name: check Github CLI has been installed
   shell: 
     cmd: 'which gh'
@@ -55,18 +60,13 @@
   register: which_gh
   ignore_errors: true
 
-- name: Install Github CLI using deb package 
-  apt:
-    deb: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.deb 
-  become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu'] and which_gh.rc != 0
-
-- name: Install Github CLI using rpm package 
-  yum:
-    name: https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.rpm 
-    disable_gpg_check: yes
-  become: yes
-  when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux'] and which_gh.rc != 0
+- name: Download Github CLI binary {{ ghcli_version }}
+  unarchive:
+    src: "https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/gh
+    when: which_gh.rc != 0
 
 - name: Creates tmp directory
   file:
