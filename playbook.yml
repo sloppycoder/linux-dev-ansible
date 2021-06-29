@@ -20,7 +20,7 @@
     # - python
     ### editor requires GUI, only supports Debian and Ubuntu for now
     ### as I have no need for them on CentOS/RHEL 
-    # - role: sublime-text
+    # - role: sublime
     #   when: ansible_distribution in ['Debian', 'Ubuntu']
     # - role: vscode
     #   when: ansible_distribution in ['Debian', 'Ubuntu']

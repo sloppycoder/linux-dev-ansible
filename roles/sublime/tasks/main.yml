@@ -18,5 +18,6 @@
     update_cache: yes
     pkg:
       - sublime-text
+      - sublime-merge
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu']
