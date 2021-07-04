@@ -11,6 +11,7 @@
       - git
       - httpie
       - jq
+      - rlwrap
       - telnet
       - tmux
       - unzip
@@ -25,6 +26,7 @@
       - curl
       - git
       - jq
+      - rlwrap
       - telnet
       - tmux
       - unzip
