@@ -8,7 +8,7 @@
       - peco
       - zsh
   become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Install required packages
   yum:

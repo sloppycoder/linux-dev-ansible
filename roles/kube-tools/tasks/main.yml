@@ -29,7 +29,7 @@
 
 - name: Download k9s binary {{ k9s_version }}
   unarchive:
-    src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_{{ k9s_version }}_Linux_{{ ansible_architecture }}.tar.gz"
+    src: "https://github.com/derailed/k9s/releases/download/{{ k9s_version }}/k9s_Linux_{{ ansible_architecture }}.tar.gz"
     remote_src: yes
     dest: ~/.local/bin
     creates: ~/.local/bin/k9s

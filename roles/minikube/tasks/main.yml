@@ -8,14 +8,14 @@
       - bridge-utils
       - virt-manager
   become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Download minikube binary {{ minikube_version }}
   get_url:
     url: "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-{{ dpkg_arch }}"
     dest: "{{ tools_path }}/minikube"
     mode: 0755
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: add user to related groups
   user:

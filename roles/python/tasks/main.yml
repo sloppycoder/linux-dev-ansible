@@ -6,7 +6,7 @@
       - python3-pip
       - python3-venv
   become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu']
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Install commonly used packages via YUM
   yum:
