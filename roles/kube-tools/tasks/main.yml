@@ -55,6 +55,21 @@
     dest: ~/.local/bin
     creates: ~/.local/bin/dapr
 
+- name: Download kubeval binary {{ kubeval_version }}
+  unarchive:
+    src: "https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-linux-{{ dpkg_arch }}.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/kubeval
+
+- name: Download flux v2 binary {{ flux_version }}
+  unarchive:
+    src: "https://github.com/fluxcd/flux2/releases/download/v{{ flux_version }}/flux_{{ flux_version }}_linux_{{ dpkg_arch }}.tar.gz"
+    remote_src: yes
+    dest: ~/.local/bin
+    creates: ~/.local/bin/flux
+
+
 - name: Download yq binary {{ yq_version }}
   get_url:
     url: "https://github.com/mikefarah/yq/releases/download/{{ yq_version }}/yq_linux_{{ dpkg_arch }}"

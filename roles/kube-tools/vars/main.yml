@@ -3,6 +3,8 @@ kustomize_version: v4.1.3
 skaffold_version: latest
 k9s_version: v0.24.14
 helm_version: v3.6.0
-dapr_version: v1.2.0
+dapr_version: v1.3.0
 yq_version: v4.6.1
+flux_version: 0.16.1
+kubeval_version: v0.16.1
 tools_path: ~/.local/bin
