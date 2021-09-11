@@ -1,32 +1,35 @@
 #
 # some roles are commented out by default. uncomment them to install
-# 0-common is required as it sets the dpkg_arch variable
 #
 
 - hosts: all
   roles:
     ### basics
-    - 00-prep # required
+    # 00-prep is required, do not comment out
+    - 00-prep
     - 0-common
-    # - 1-oh-my-zsh
+    - 1-oh-my-zsh
+    - asdf # version manager that can handle mutlile languages include nodejs, python, ruby, elixir
+
     ### cloud stuff
     # - gcloud-sdk
     # - kube-tools
     # - awscli-v2
+
     ### language related
     # - golang
-    # - volta
     # - sdkman
-    # - nvm  # nvm is way slower than volta
     # - python
     # - clojure
+
     ### editor requires GUI, only supports Debian and Ubuntu for now
     ### as I have no need for them on CentOS/RHEL
     # - role: sublime
     #   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
     # - role: vscode
     #   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
-    # somewhat complicated, for now only do Debian/Ubuntu/Pop!_OS
+
+    ## somewhat complicated, for now only do Debian/Ubuntu/Pop!_OS
     # - role: docker-ce
     #  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
     #- role: minikube
