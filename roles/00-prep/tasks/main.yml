@@ -1,0 +1,13 @@
+- name: Determine binary variable
+  set_fact:
+    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+
+- name: create .local/bin directory
+  file:
+    path: ~/.local/bin
+    state: directory
+
+- name: Creates tmp directory
+  file:
+    path: ~/tmp
+    state: directory

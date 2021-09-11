@@ -6,6 +6,7 @@
 - hosts: all
   roles:
     ### basics
+    - 00-prep # required
     - 0-common
     # - 1-oh-my-zsh
     ### cloud stuff
@@ -20,7 +21,7 @@
     # - python
     # - clojure
     ### editor requires GUI, only supports Debian and Ubuntu for now
-    ### as I have no need for them on CentOS/RHEL 
+    ### as I have no need for them on CentOS/RHEL
     # - role: sublime
     #   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
     # - role: vscode
