@@ -12,7 +12,8 @@
       asdf plugin add nodejs
   ignore_errors: true
 
-- name: Install build essentials for compiling C extensions
+# the packages below required to compile Erlang/OTP when using ASDF
+- name: Install packages required to compiling Erlang/OTP
   apt:
     update_cache: yes
     pkg:
@@ -39,6 +40,7 @@
   yum:
     name:
       - '@Development tools'
+      # TODO: add CentOS packages...
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
