@@ -7,9 +7,9 @@
 - name: install asdf plugin for erlang and elixir
   shell:
     cmd: |
-      asdf plugin add erlang
-      asdf plugin add elixir
-      asdf plugin add nodejs
+      ~/.asdf/bin/asdf plugin add erlang
+      ~/.asdf/bin/asdf plugin add elixir
+      ~/.asdf/bin/asdf plugin add nodejs
   ignore_errors: true
 
 # the packages below required to compile Erlang/OTP when using ASDF
