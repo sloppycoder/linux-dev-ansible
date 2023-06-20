@@ -2,32 +2,32 @@
   apt:
     update_cache: yes
     pkg:
-      - apt-transport-https
-      - curl
-      - git
-      - httpie
-      - jq
-      - rlwrap
-      - telnet
-      - tmux
-      - unzip
-      - wget
-      - zip
+    - apt-transport-https
+    - curl
+    - git
+    - httpie
+    - jq
+    - rlwrap
+    - telnet
+    - tmux
+    - unzip
+    - wget
+    - zip
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Install commonly used packages via YUM
   yum:
     name:
-      - curl
-      - git
-      - jq
-      - rlwrap
-      - telnet
-      - tmux
-      - unzip
-      - wget
-      - zip
+    - curl
+    - git
+    - jq
+    - rlwrap
+    - telnet
+    - tmux
+    - unzip
+    - wget
+    - zip
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
@@ -37,24 +37,3 @@
     dest: ~/.gitconfig
     mode: 0644
     force: no
-
-- name: check Github CLI has been installed
-  shell:
-    cmd: 'which gh'
-    warn: no
-  register: which_gh
-  ignore_errors: true
-
-- name: Download Github CLI binary {{ ghcli_version }}
-  unarchive:
-    src: "https://github.com/cli/cli/releases/download/v{{ ghcli_version }}/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}.tar.gz"
-    remote_src: yes
-    dest: ~/tmp
-    creates: ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}/bin/gh
-  when: which_gh.rc != 0
-
-- name: Copy Github CLI binary to ~/.local/bin
-  shell:
-    cmd: 'cp ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}/bin/gh ~/.local/bin/. && rm -rf ~/tmp/gh_{{ ghcli_version }}_linux_{{ dpkg_arch }}'
-    creates: ~/.local/bin/gh
-  when: which_gh.rc != 0

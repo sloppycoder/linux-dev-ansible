@@ -1,20 +1,19 @@
 ## playbook here is copied from https://github.com/veggiemonk/ansible-ohmyzsh
----
 - name: Install required packages
   apt:
     update_cache: yes
     pkg:
-      - git
-      - peco
-      - zsh
+    - git
+    - peco
+    - zsh
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Install required packages
   yum:
     name:
-      - git
-      - zsh
+    - git
+    - zsh
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 
@@ -48,14 +47,8 @@
     update: no
     depth: 1
   with_items:
-    - {
-        repo: "https://github.com/zsh-users/zsh-autosuggestions",
-        dest: "zsh-autosuggestions",
-      }
-    - {
-        repo: "https://github.com/jimeh/zsh-peco-history.git",
-        dest: "zsh-peco-history",
-      }
+  - {repo: "https://github.com/zsh-users/zsh-autosuggestions", dest: "zsh-autosuggestions"}
+  - {repo: "https://github.com/jimeh/zsh-peco-history.git", dest: "zsh-peco-history",}
 
 - name: Creating new zshrc
   template:

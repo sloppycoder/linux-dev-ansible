@@ -12,3 +12,11 @@ localhost
 ansible_connection=local
 # uncomment line below to instruct ansible use python3 by default
 ansible_python_interpreter=/usr/bin/python3
+
+[gcp]
+34.82.201.183
+
+[gcp:vars]
+ansible_ssh_user=lee
+# uncomment line below to instruct ansible use python3 by default
+ansible_python_interpreter=/usr/bin/python3
