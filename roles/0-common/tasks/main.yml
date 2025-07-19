@@ -2,32 +2,33 @@
   apt:
     update_cache: yes
     pkg:
-    - apt-transport-https
-    - curl
-    - git
-    - httpie
-    - jq
-    - rlwrap
-    - telnet
-    - tmux
-    - unzip
-    - wget
-    - zip
+      - curl
+      - git
+      - jq
+      - peco
+      - screen
+      - telnet
+      - tmux
+      - unzip
+      - wget
+      - zip
+      - zsh
   become: yes
   when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
 
 - name: Install commonly used packages via YUM
   yum:
     name:
-    - curl
-    - git
-    - jq
-    - rlwrap
-    - telnet
-    - tmux
-    - unzip
-    - wget
-    - zip
+      - curl
+      - git
+      - jq
+      - rlwrap
+      - telnet
+      - tmux
+      - unzip
+      - wget
+      - zip
+      - zsh
   become: yes
   when: ansible_distribution in ['CentOS', 'Red Hat Enterprise Linux']
 

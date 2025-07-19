@@ -1,10 +1,3 @@
-[vagrant]
-default
-
-[vagrant:vars]
-ansible_ssh_user=vagrant
-ansible_ssh_common_args='-F vagrant-ssh-config'
-
 [local]
 localhost
 
@@ -14,9 +7,9 @@ ansible_connection=local
 ansible_python_interpreter=/usr/bin/python3
 
 [gcp]
-34.82.201.183
+10.10.10.10
 
 [gcp:vars]
-ansible_ssh_user=lee
+ansible_ssh_user=ubuntu
 # uncomment line below to instruct ansible use python3 by default
 ansible_python_interpreter=/usr/bin/python3
