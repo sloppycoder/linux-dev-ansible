@@ -26,8 +26,8 @@ cd <repo_directory>
 # for EC2 VM, or any other VM has a known username
 ./setup <remote_server_ip> <remote_server_username>
 
-# override new user name
-./setup <remote_server_ip> <remote_server_username> -e "new_user_name=dev1"
+# override new user name and make the new user a sudoers without password
+./setup <remote_server_ip> <remote_server_username> -e "new_user_name=dev1" - e "new_user_sudoer=true"
 
 # for GCP VM, there's no fixed username
 # first find out what's the user name
