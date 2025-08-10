@@ -1,1 +1,7 @@
-ansible-playbook -i inventory -l localhost playbook.yml $*
+# pass ip and username from command line
+ANSIBLE_SSH_ARGS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+ansible-playbook -i $1, playbook.yml -u $2 "${@:3}"
+
+# or use invetory file
+# ANSIBLE_SSH_ARGS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+# ansible-playbook -i inventory -l localhost playbook.yml $*

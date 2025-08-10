@@ -1,0 +1,35 @@
+- name: Clone oh-my-zsh
+  become: yes
+  become_user: "{{ new_user_name }}"
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+    update: no
+    depth: 1
+
+- name: Clone oh-my-zsh custom plugins for fish shell like behavior
+  become: yes
+  become_user: "{{ new_user_name }}"
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/home/{{ new_user_name }}/.oh-my-zsh/custom/plugins/{{ item.dest }}"
+    update: no
+    depth: 1
+  with_items:
+    - {
+        repo: "https://github.com/zsh-users/zsh-autosuggestions",
+        dest: "zsh-autosuggestions",
+      }
+    - {
+        repo: "https://github.com/jimeh/zsh-peco-history.git",
+        dest: "zsh-peco-history",
+      }
+
+- name: Creating new zshrc
+  become: yes
+  become_user: "{{ new_user_name }}"
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ new_user_name }}/.zshrc"
+    mode: 0644
+    force: yes

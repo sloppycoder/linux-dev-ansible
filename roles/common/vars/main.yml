@@ -1,0 +1,4 @@
+peco_version: v0.5.11
+new_user_name: aidev
+authorized_pub_key: "{{ lookup('file', '~/.ssh/id_ed25519.pub', errors='ignore') }}"
+new_user_sudoer: false

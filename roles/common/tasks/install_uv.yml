@@ -1,0 +1,10 @@
+- name: Install python package manager uv
+  become: yes
+  become_user: "{{ new_user_name }}"
+  shell:
+    cmd: |
+      set -e
+      curl -LsSf https://astral.sh/uv/install.sh | sh
+    creates: "/home/{{ new_user_name }}/.local/bin/uv"
+  environment:
+    HOME: "/home/{{ new_user_name }}"

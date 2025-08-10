@@ -1,0 +1,56 @@
+- name: Create user {{ new_user_name }}
+  become: yes
+  ansible.builtin.user:
+    name: "{{ new_user_name }}"
+    shell: /usr/bin/zsh
+    create_home: yes
+    state: present
+
+- name: Creating new ~/.gitconfig
+  become: yes
+  become_user: "{{ new_user_name }}"
+  template:
+    src: gitconfig.j2
+    dest: "/home/{{ new_user_name }}/.gitconfig"
+    mode: 0644
+    force: no
+    owner: "{{ new_user_name }}"
+    group: "{{ new_user_name }}"
+
+- name: create ~/.local/bin directory
+  become: yes
+  become_user: "{{ new_user_name }}"
+  file:
+    path: "/home/{{ new_user_name }}/.local/bin"
+    state: directory
+    owner: "{{ new_user_name }}"
+    group: "{{ new_user_name }}"
+
+- name: Creates ~/tmp directory
+  become: yes
+  become_user: "{{ new_user_name }}"
+  file:
+    path: "/home/{{ new_user_name }}/tmp"
+    state: directory
+    owner: "{{ new_user_name }}"
+    group: "{{ new_user_name }}"
+
+- name: Set up authorized_keys for the new user
+  become: yes
+  ansible.posix.authorized_key:
+    user: "{{ new_user_name }}"
+    key: "{{ authorized_pub_key }}"
+    state: present
+  when: authorized_pub_key | length > 0
+
+- name: Allow '{{ new_user_name }}' to use sudo without a password
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers.d/{{ new_user_name }}"
+    line: "{{ new_user_name }} ALL=(ALL) NOPASSWD: ALL"
+    create: yes
+    owner: root
+    group: root
+    mode: "0440"
+    validate: "visudo -cf %s"
+  when: new_user_sudoer | default(false) | bool

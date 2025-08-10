@@ -1,6 +1,0 @@
-- name: Install python package manager uv
-  shell:
-    cmd: |
-      set -e
-      curl -LsSf https://astral.sh/uv/install.sh | sh
-    creates: ~/.local/bin/uv

@@ -1,0 +1,4 @@
+- import_tasks: install_packages.yml
+- import_tasks: create_new_user.yml
+- import_tasks: install_uv.yml
+- import_tasks: install_oh_my_zsh.yml

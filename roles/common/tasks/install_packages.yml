@@ -1,0 +1,56 @@
+- name: Determine binary variable
+  set_fact:
+    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+
+- name: Install commonly used packages via APT
+  become: yes
+  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
+  apt:
+    update_cache: yes
+    pkg:
+      - acl
+      - curl
+      - git
+      - htop
+      - jq
+      - peco
+      - telnet
+      - tmux
+      - unzip
+      - wget
+      - zip
+      - zsh
+
+- name: Install commonly used packages via YUM
+  become: yes
+  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
+  yum:
+    name:
+      - acl
+      - git
+      - htop
+      - jq
+      - telnet
+      - tmux
+      - unzip
+      - wget
+      - zip
+      - zsh
+
+- name: Download peco binary {{ peco_version }}
+  become: yes
+  unarchive:
+    src: "https://github.com/peco/peco/releases/download/{{ peco_version }}/peco_linux_{{ dpkg_arch }}.tar.gz"
+    remote_src: yes
+    dest: "/tmp"
+    creates: "/tmp/peco_linux_{{ dpkg_arch }}/peco"
+  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
+
+- name: Install peco binary
+  become: yes
+  shell:
+    cmd: |
+      set -e
+      cp "/tmp/peco_linux_{{ dpkg_arch }}/peco" "/usr/local/bin/peco"
+    creates: "/usr/local/bin/peco"
+  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
