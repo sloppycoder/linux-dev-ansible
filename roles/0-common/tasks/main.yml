@@ -6,7 +6,6 @@
       - git
       - jq
       - peco
-      - screen
       - telnet
       - tmux
       - unzip
