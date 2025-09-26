@@ -1,0 +1,15 @@
+- name: Download Github CLI {{ gh_cli_version }}
+  become: yes
+  unarchive:
+    src: "https://github.com/cli/cli/releases/download/v{{ gh_cli_version }}/gh_{{ gh_cli_version }}_linux_amd64.tar.gz"
+    remote_src: yes
+    dest: "/tmp"
+    creates: "/tmp/gh_{{ gh_cli_version }}_linux_amd64/bin/gh"
+
+- name: Install Github CLI binary
+  become: yes
+  shell:
+    cmd: |
+      set -e
+      cp "/tmp/gh_{{ gh_cli_version }}_linux_amd64/bin/gh" "/usr/local/bin/gh"
+    creates: "/usr/local/bin/gh"
