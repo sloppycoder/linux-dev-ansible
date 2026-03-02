@@ -1,10 +1,10 @@
 - name: Determine binary variable
   set_fact:
-    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+    dpkg_arch: "{{ 'amd64' if ansible_facts['architecture'] == 'x86_64' else ansible_facts['architecture'] }}"
 
 - name: Install commonly used packages via APT
   become: yes
-  when: ansible_distribution in ['Debian', 'Ubuntu', 'Pop!_OS']
+  when: ansible_facts['distribution'] in ['Debian', 'Ubuntu', 'Pop!_OS']
   apt:
     update_cache: yes
     pkg:
@@ -23,7 +23,7 @@
 
 - name: Install commonly used packages via YUM
   become: yes
-  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
+  when: ansible_facts['distribution'] in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
   yum:
     name:
       - acl
@@ -44,7 +44,7 @@
     remote_src: yes
     dest: "/tmp"
     creates: "/tmp/peco_linux_{{ dpkg_arch }}/peco"
-  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
+  when: ansible_facts['distribution'] in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
 
 - name: Install peco binary
   become: yes
@@ -53,4 +53,4 @@
       set -e
       cp "/tmp/peco_linux_{{ dpkg_arch }}/peco" "/usr/local/bin/peco"
     creates: "/usr/local/bin/peco"
-  when: ansible_distribution in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
+  when: ansible_facts['distribution'] in ['Amazon', 'CentOS', 'Red Hat Enterprise Linux']
